@@ -3,9 +3,13 @@
     "target": "es5",
     "module": "commonjs",
     "strict": true,
+    "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
     "outDir": "./build",
     "baseUrl": "./src",
     "paths": {
