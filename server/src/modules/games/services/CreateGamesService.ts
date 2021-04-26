@@ -15,8 +15,13 @@ export class CreateGamesService implements Service {
     private platformsRepository: IPlatformsRepository
   ){}
 
-  async execute(gameData: ICreateGameDTO): Promise<Game> {
-    const game = await this.gamesRepository.create(gameData)
-    return game
+  async execute({ 
+    name, 
+    price, 
+    thumb, 
+    description, 
+    stores_id,
+    platforms_id 
+  }: ICreateGameDTO): Promise<Game> {
   }
 }

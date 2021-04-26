@@ -7,7 +7,8 @@ import {
   UpdateDateColumn, 
   PrimaryGeneratedColumn,
   JoinColumn,
-  OneToMany
+  OneToMany,
+  ManyToMany
 } from 'typeorm';
 
 @Entity('games')
@@ -27,17 +28,17 @@ export class Game {
   @Column()
   price: number;
 
-  @Column({ type: 'uuid' })
+  @Column()
   platforms_id: string;
 
-  @Column({ type: 'uuid' })
-  stores_id: string;
-
-  @OneToMany(() => Platform, platform => platform.id)
+  @ManyToMany(() => Platform, platform => platform.id)
   @JoinColumn({ name: 'platforms_id' })
   platforms: Platform[];
 
-  @OneToMany(() => Store, store => store.id)
+  @Column()
+  stores_id: string;  
+
+  @ManyToMany(() => Store, store => store.id)
   @JoinColumn({ name: 'stores_id' })
   stores: Store[];
 
