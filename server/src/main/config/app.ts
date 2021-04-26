@@ -2,7 +2,7 @@ import express from 'express';
 import setupRoutes from './routes';
 import setupMiddlewares from './middleware'
 import setupDatabase from './database';
-import './containers'
+import '../containers';
 
 const app = express();
 

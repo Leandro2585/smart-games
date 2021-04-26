@@ -1,6 +1,7 @@
 import { ICreateGameDTO } from '@modules/games/dtos/ICreateGamesDTO';
 import { IGamesRepository } from '@modules/games/repositories/IGamesRepository';
 import { getRepository, Repository } from 'typeorm';
+import { uuid } from 'uuidv4';
 import { Game } from '../entities/Game';
 
 export class GamesRepository implements IGamesRepository {

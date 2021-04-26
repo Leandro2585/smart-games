@@ -1,3 +1,3 @@
 export interface Service {
-  execute(data: any): Promise<any>
+  execute(data?: any): Promise<any>
 }
