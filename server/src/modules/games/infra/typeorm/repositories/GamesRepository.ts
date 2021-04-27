@@ -21,7 +21,7 @@ export class GamesRepository implements IGamesRepository {
     return game;
   }
 
-  async findAllGames(): Promise<Game[]> {
+  async findAll(): Promise<Game[]> {
     const games = await this.ormRepository.find();
     return games;
   }

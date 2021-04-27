@@ -7,22 +7,18 @@
     {
       "name": "PlayStation 2",
       "thumb": "https://seeklogo.com/images/P/playstation-2-ps2-logo-A6D6253140-seeklogo.com.png",
-      "shortname": "PS2"
     },
     {
       "name": "PlayStation 3",
       "thumb": "https://seeklogo.com/images/P/ps3-slim-logo-69183EA733-seeklogo.com.png",
-      "shortname": "PS3"
     },
     {
       "name": "PlayStation 4",
       "thumb": "https://seeklogo.com/images/P/playstation-4-logo-AA1FE1C0CE-seeklogo.com.png",
-      "shortname": "PS4"
     },
     {
       "name": "PlayStation 5",
       "thumb": "https://seeklogo.com/images/P/playstation-5-logo-99C5082B4F-seeklogo.com.png",
-      "shortname": "PS5"
     },
     {
       "name": "Xbox",
@@ -35,6 +31,10 @@
     {
       "name": "WiiU",
       "thumb": "https://seeklogo.com/images/W/wiiu-logo-ED0589AED9-seeklogo.com.png"
+    },
+    {
+      "name": "Nintendo Switch",
+      "thumb": "https://seeklogo.com/images/N/nintendo-switch-logo-EBF7134F63-seeklogo.com.png"
     }
   ]
 }
