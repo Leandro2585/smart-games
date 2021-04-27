@@ -1,10 +1,10 @@
 import { container } from 'tsyringe';
 import { badRequest, ok } from '@shared/helpers/http/HttpHelper';
 import { Controller, HttpRequest, HttpResponse } from '@shared/protocols';
-import { CreateGamesService } from '../services/CreateGamesService';
+import { CreateGameService } from '../services/CreateGameService';
 import { Validation } from '@shared/protocols/Validation';
 
-export class CreateGamesController implements Controller {
+export class CreateGameController implements Controller {
   constructor(
     private readonly validation: Validation
   ){}
@@ -20,16 +20,16 @@ export class CreateGamesController implements Controller {
         description, 
         thumb, 
         price,
-        platforms
+        platforms_id
       } = await httpRequest.body
       
-      const createGame = container.resolve(CreateGamesService)
+      const createGame = container.resolve(CreateGameService)
       const game = await createGame.execute({
         name, 
         description, 
         thumb, 
         price,
-        platforms
+        platforms_id
       })
 
       return ok(game)

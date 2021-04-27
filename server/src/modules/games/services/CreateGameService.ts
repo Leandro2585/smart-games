@@ -4,6 +4,7 @@ import { IGamesRepository } from '../repositories/IGamesRepository';
 import { Game } from '../infra/typeorm/entities/Game';
 import { IPlatformsRepository } from '@modules/platforms/repositories/IPlatformsRepository';
 import { InvalidParamError } from '@shared/errors';
+import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
@@ -14,7 +15,7 @@ interface IRequest {
 }
 
 @injectable()
-export class CreateGamesService implements Service {
+export class CreateGameService implements Service {
   constructor(
     @inject('GamesRepository')
     private gamesRepository: IGamesRepository,
@@ -32,7 +33,7 @@ export class CreateGamesService implements Service {
   }: IRequest): Promise<Game> {
     const checkPlatformsExists = await this.platformsRepository.findByIds(platforms_id);
     if(!checkPlatformsExists) {
-      throw new InvalidParamError('platforms')
+      throw new AppError('Platform ids not exist!')
     }
     const game = await this.gamesRepository.create({
       name,

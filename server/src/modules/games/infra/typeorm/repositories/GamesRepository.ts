@@ -1,6 +1,6 @@
-import { ICreateGameDTO } from '@modules/games/dtos/ICreateGamesDTO';
-import { IGamesRepository } from '@modules/games/repositories/IGamesRepository';
-import { getRepository, Repository } from 'typeorm';
+import { ICreateGameDTO } from '../../../dtos/ICreateGamesDTO';
+import { IGamesRepository } from '../../../repositories/IGamesRepository';
+import { getRepository, In, Repository } from 'typeorm';
 import { Game } from '../entities/Game';
 
 export class GamesRepository implements IGamesRepository {
@@ -8,15 +8,19 @@ export class GamesRepository implements IGamesRepository {
   constructor(){
     this.ormRepository = getRepository(Game);
   }
+  async findByIds(ids: string[]): Promise<Game[] | undefined> {
+    const games = await this.ormRepository.find({
+      id: In(ids)
+    })
+    return games
+  }
 
-  async create(gameData: ICreateGameDTO): Promise<Game> {
-    const game = await this.ormRepository.create(gameData);
+  async create(gameDTO: ICreateGameDTO): Promise<Game> {
+    const game = await this.ormRepository.create(gameDTO);
     await this.ormRepository.save(game);
     return game;
   }
-  async save(game: Game): Promise<Game> {
-    return this.ormRepository.save(game);
-  }
+
   async findAllGames(): Promise<Game[]> {
     const games = await this.ormRepository.find();
     return games;
