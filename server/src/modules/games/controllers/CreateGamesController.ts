@@ -20,7 +20,7 @@ export class CreateGamesController implements Controller {
         description, 
         thumb, 
         price,
-        platforms_id
+        platforms
       } = await httpRequest.body
       
       const createGame = container.resolve(CreateGamesService)
@@ -29,7 +29,7 @@ export class CreateGamesController implements Controller {
         description, 
         thumb, 
         price,
-        platforms_id
+        platforms
       })
 
       return ok(game)

@@ -1,7 +1,6 @@
 import { ICreateGameDTO } from '@modules/games/dtos/ICreateGamesDTO';
 import { IGamesRepository } from '@modules/games/repositories/IGamesRepository';
 import { getRepository, Repository } from 'typeorm';
-import { uuid } from 'uuidv4';
 import { Game } from '../entities/Game';
 
 export class GamesRepository implements IGamesRepository {
@@ -12,10 +11,11 @@ export class GamesRepository implements IGamesRepository {
 
   async create(gameData: ICreateGameDTO): Promise<Game> {
     const game = await this.ormRepository.create(gameData);
+    await this.ormRepository.save(game);
     return game;
   }
   async save(game: Game): Promise<Game> {
-    return this.ormRepository.save(game)
+    return this.ormRepository.save(game);
   }
   async findAllGames(): Promise<Game[]> {
     const games = await this.ormRepository.find();
