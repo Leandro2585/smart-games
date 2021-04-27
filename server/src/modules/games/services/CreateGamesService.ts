@@ -1,9 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 import { Service } from '@shared/protocols/Service';
-import { IPlatformsRepository } from '@modules/platforms/repositories/IPlatformsRepository';
 import { ICreateGameDTO } from '../dtos/ICreateGamesDTO';
 import { IGamesRepository } from '../repositories/IGamesRepository';
 import { Game } from '../infra/typeorm/entities/Game';
+import { IPlatformsRepository } from '@modules/platforms/repositories/IPlatformsRepository';
+import { InvalidParamError } from '@shared/errors';
 
 @injectable()
 export class CreateGamesService implements Service {
@@ -13,6 +14,7 @@ export class CreateGamesService implements Service {
 
     @inject('PlatformsRepository')
     private platformsRepository: IPlatformsRepository
+
   ){}
 
   async execute({ 
@@ -20,8 +22,12 @@ export class CreateGamesService implements Service {
     price, 
     thumb, 
     description, 
-    stores_id,
     platforms_id 
   }: ICreateGameDTO): Promise<Game> {
+    const checkPlatformsExists = await this.platformsRepository.findByIds(platforms_id);
+    if(!checkPlatformsExists) {
+      throw new InvalidParamError('platforms_id')
+    }
+    
   }
 }

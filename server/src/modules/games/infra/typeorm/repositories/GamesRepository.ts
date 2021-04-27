@@ -12,8 +12,10 @@ export class GamesRepository implements IGamesRepository {
 
   async create(gameData: ICreateGameDTO): Promise<Game> {
     const game = await this.ormRepository.create(gameData);
-    await this.ormRepository.save(game);
     return game;
+  }
+  async save(game: Game): Promise<Game> {
+    return this.ormRepository.save(game)
   }
   async findAllGames(): Promise<Game[]> {
     const games = await this.ormRepository.find();

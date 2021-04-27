@@ -1,14 +1,12 @@
 import { Platform } from '@modules/platforms/infra/typeorm/entities/Platform';
-import { Store } from '@modules/stores/infra/typeorm/entities/Store';
 import {
   Entity, 
   Column, 
   CreateDateColumn, 
   UpdateDateColumn, 
   PrimaryGeneratedColumn,
-  JoinColumn,
-  OneToMany,
-  ManyToMany
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 
 @Entity('games')
@@ -27,20 +25,14 @@ export class Game {
 
   @Column()
   price: number;
-
-  @Column()
-  platforms_id: string;
-
-  @ManyToMany(() => Platform, platform => platform.id)
-  @JoinColumn({ name: 'platforms_id' })
+  
+  @ManyToMany(() => Platform)
+  @JoinTable({
+    name: 'game_platform',
+    joinColumns: [{ name: 'game_id'}],
+    inverseJoinColumns: [{ name: 'platform_id'}]
+  })
   platforms: Platform[];
-
-  @Column()
-  stores_id: string;  
-
-  @ManyToMany(() => Store, store => store.id)
-  @JoinColumn({ name: 'stores_id' })
-  stores: Store[];
 
   @CreateDateColumn()
   created_at: Date;

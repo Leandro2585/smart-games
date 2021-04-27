@@ -4,5 +4,4 @@ export interface ICreateGameDTO {
   thumb: string;
   price: number;
   platforms_id: string[];
-  stores_id: string[];
 }

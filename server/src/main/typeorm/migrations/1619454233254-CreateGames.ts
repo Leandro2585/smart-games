@@ -32,10 +32,6 @@ export class CreateGames1619454233254 implements MigrationInterface {
 					scale: 2
 				},
 				{
-					name: 'game_platforms_id',
-					type: 'uuid'
-				},
-				{
 					name: 'created_at',
 					type: 'timestamp',
 					default: 'now()'

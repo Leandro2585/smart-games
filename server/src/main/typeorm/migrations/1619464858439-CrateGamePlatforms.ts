@@ -1,18 +1,11 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from 'typeorm';
+import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export class CreateGamePlatforms1619461992138 implements MigrationInterface {
+export class CrateGamePlatforms1619464858439 implements MigrationInterface {
 
-	public async up(queryRunner: QueryRunner): Promise<void> {
+public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(new Table({
 			name: 'game_platform',
 			columns: [
-				{
-					name: 'id',
-					type: 'uuid',
-					isPrimary: true,
-					isGenerated: true,
-					generationStrategy: 'uuid'
-				},
 				{
 					name: 'platform_id',
 					type: 'uuid'
@@ -23,7 +16,7 @@ export class CreateGamePlatforms1619461992138 implements MigrationInterface {
 				}
 			]
 		}))
-
+	
 		await queryRunner.createForeignKeys('game_platform', [
 			new TableForeignKey(
 				{
@@ -47,10 +40,9 @@ export class CreateGamePlatforms1619461992138 implements MigrationInterface {
 		)
 		])
 	}
-
+	
 	public async down(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.dropForeignKeys('game_platform', [])
 		await queryRunner.dropTable('game_platform')
 	}
-
 }

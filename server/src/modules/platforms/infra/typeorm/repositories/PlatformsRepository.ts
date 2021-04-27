@@ -7,13 +7,11 @@ export class PlatformsRepository implements IPlatformsRepository {
   constructor() {
     this.ormRepository = getRepository(Platform);
   }
-
-  async findByName(name: string): Promise<Platform | undefined> {
-    const platform = await this.ormRepository.findOne({
-      where: { name }
-    });
-    
-    return platform;
+  async findByIds(ids: string[]): Promise<Platform[]> {
+    const platforms = await this.ormRepository.find({
+      id: In(ids)
+    })
+    return platforms
   }
 
   async findAll(): Promise<Platform[]> {
