@@ -8,7 +8,11 @@ export class GamesRepository implements IGamesRepository {
   constructor(){
     this.ormRepository = getRepository(Game);
   }
-  async findByIds(ids: string[]): Promise<Game[] | undefined> {
+  async findById(id: string): Promise<Game | undefined> {
+    const game = await this.ormRepository.findOne(id);
+    return game;
+  }
+  async findByIds(ids: string[]): Promise<Game[]> {
     const games = await this.ormRepository.find({
       id: In(ids)
     })

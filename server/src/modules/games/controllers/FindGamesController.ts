@@ -7,8 +7,8 @@ export class FindGamesController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const findGames = container.resolve(FindGamesService);
-      const games = await findGames.execute()
-      return ok(games)
+      const games = await findGames.execute();
+      return ok(games);
     } catch (error) {
       return badRequest(error);
     }

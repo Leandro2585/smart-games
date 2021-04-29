@@ -10,9 +10,9 @@ export class CreateGameController implements Controller {
   ){}
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const error = this.validation.validate(httpRequest.body)
+      const error = this.validation.validate(httpRequest.body);
       if(error) {
-        return badRequest(error)
+        return badRequest(error);
       }
       
       const { 
@@ -21,18 +21,18 @@ export class CreateGameController implements Controller {
         thumb, 
         price,
         platforms_id
-      } = await httpRequest.body
+      } = await httpRequest.body;
       
-      const createGame = container.resolve(CreateGameService)
+      const createGame = container.resolve(CreateGameService);
       const game = await createGame.execute({
         name, 
         description, 
         thumb, 
         price,
         platforms_id
-      })
+      });
 
-      return ok(game)
+      return ok(game);
     } catch (error) {
       return badRequest(error);
     }
