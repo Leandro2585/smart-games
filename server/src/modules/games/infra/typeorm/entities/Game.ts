@@ -1,4 +1,5 @@
 import { Platform } from '@modules/platforms/infra/typeorm/entities/Platform';
+import { platform } from 'os';
 import {
   Entity, 
   Column, 
@@ -25,7 +26,7 @@ export class Game {
 
   @Column()
   price: number;
-  
+
   @ManyToMany(() => Platform)
   @JoinTable({
     name: 'game_platform',

@@ -1,5 +1,5 @@
 import { Game } from '@modules/games/infra/typeorm/entities/Game';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 
 @Entity('platforms')
 export class Platform {
@@ -10,8 +10,8 @@ export class Platform {
   name: string;
 
   @Column()
-  thumb: number;
-  
+  thumb: string;
+
   @CreateDateColumn()
   created_at: Date;
 

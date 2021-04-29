@@ -9,7 +9,7 @@ export class PlatformsRepository implements IPlatformsRepository {
   }
   async findByIds(ids: string[]): Promise<Platform[]> {
     const platforms = await this.ormRepository.find({
-      id: In(ids)
+      where: { id: In(ids) }
     })
     return platforms
   }
